@@ -25,6 +25,7 @@ def load_data(year):
     df = html[0]
     raw = df.drop(df[df.Age == 'Age'].index)  # Deletes repeating headers in content
     raw = raw.fillna(0)
+    raw = raw.drop_duplicates(subset='Player', keep='first')
     playerstats = raw.drop(['Rk'], axis=1)
     return playerstats
 
